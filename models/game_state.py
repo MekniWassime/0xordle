@@ -33,6 +33,8 @@ class game_state:
         return validate_regex.search(input) != None
 
     def play(self, new_attempt):
+        if(not game_state.validate_input(new_attempt)):
+            raise Exception("invalid user input")
         new_attempt = new_attempt.lower()
         self.attempts.append(new_attempt)
         if(new_attempt == self.goal):
