@@ -30,7 +30,7 @@ class leaderboard_repository:
     def fetch_records():
         con = sqlite3.connect('leaderboard.db')
         cur = con.cursor()
-        cur.execute("select * from leaderboard")
+        cur.execute("select * from leaderboard ORDER BY attempts")
         result = []
         for row in cur.fetchall():
             start_time, end_time, goal, attempts = row
