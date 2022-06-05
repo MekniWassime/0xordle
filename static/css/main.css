@@ -1,0 +1,29 @@
+:root {
+    color-scheme: light dark; /* both supported */
+}
+body{
+    font-family: monospace;
+    color: rgb(201, 201, 213);
+    background-color: rgb(19, 21, 24);
+    height: 100%;
+}
+
+td{
+    text-align: center;
+}
+
+th{
+    text-align: center;
+}
+
+td.match{
+    background-color: rgb(36, 129, 2);
+}
+
+td.exists{
+    background-color: rgb(171, 142, 0);
+}
+
+h2 span{
+    font-weight: bold;
+}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<h1>Remaining attempts = {{ game_state.attempts_remaining() }} <span id="timer">00:00</span></h1>
+<h2>Guess the hex string #RRGGBB for <span style="color: #{{game_state.goal}};">COLOR ■</span></h2>
+<table class="table table-dark table-bordered">
+    <tr>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+    </tr>
+    {%for row in game_state.get_board()%}
+        <tr>
+            {%for elem in row%}
+                <td class="{{elem['status']}}">{{elem['char'].upper()}}</td>
+            {%endfor%}
+        </tr>
+    {%endfor%}
+</table>
+    {% if not game_state.did_win %}
+        <form action="dailyhex" method="post">
+            <label for="user_input">#</label>
+            <input type="text" name="user_input" id="user_input" pattern="^[0-9A-Fa-f]{6}$" title="Invalid hex code">
+            <input type="submit" value="Try It!" class="btn-primary">
+        </form>
+    {% else %}
+        <h1>You figured it out congratz!</h1>
+    {% endif %}
+
+<script>
+    const did_win = '{{game_state.did_win}}'=='True'
+    var start_time = {{game_state.start_time}}
+    var current_time = (new Date()).getTime();
+    if(did_win)
+        current_time = {{game_state.end_time}}
+    var duration_seconds = Math.round((current_time - start_time)/1000)
+    const timer = document.getElementById("timer")
+    timer.innerText = time_string(duration_seconds)
+    function time_string(duration_seconds){
+        nbr_minutes = Math.floor(duration_seconds / 60)
+        nbr_seconds = duration_seconds - nbr_minutes*60
+        min_string = String(nbr_minutes).padStart(2, '0')
+        sec_string = String(nbr_seconds).padStart(2, '0')
+        return min_string + ':' + sec_string
+    }
+    if(!did_win)
+        setInterval(() => {
+            str = time_string(duration_seconds)
+            timer.innerText = str
+            duration_seconds++
+        }, 1000);
+</script>
+<a href="resetboard">reset board</a>
+{% endblock %}

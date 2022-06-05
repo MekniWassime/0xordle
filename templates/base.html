@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0xOrdle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1 class="display-1 title" id="logo">>0xrdle_</h1>
+    <div class="container">
+        {% block main %}
+        {% endblock %}
+    </div>
+    <script>
+        logo = document.getElementById("logo")
+        logo.onclick = function clicked(event) {
+            window.location.href="/";
+        }
+        toggle = false
+        setInterval(function () {
+            if(toggle)
+                logo.innerText = '>0xrdle_'
+            else
+                logo.innerText = '>0xrdle'
+            toggle = !toggle
+        }, 600);
+    </script>
+</body>
+</html>
