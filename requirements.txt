@@ -3,4 +3,4 @@ pytest
 selenium
 webdriver-manager
 coverage
-sqlite3
+pysqlite3
