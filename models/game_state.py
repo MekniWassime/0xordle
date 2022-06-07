@@ -5,7 +5,8 @@ validate_regex = re.compile("^[0-9A-Fa-f]{6}$")
 class game_state:
 
     def __init__(self, goal, attempts = [], max_attempts = 6, did_win = False, start_time=0, end_time = -1):
-        assert(game_state.validate_input(goal))
+        if(not game_state.validate_input(goal)):
+            raise Exception("invalid goal format")
         self.attempts = attempts
         self.goal = goal.lower()
         self.max_attempts = max_attempts

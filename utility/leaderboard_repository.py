@@ -1,13 +1,6 @@
 import sqlite3
 from datetime import datetime
-con = sqlite3.connect('leaderboard.db')
-cur = con.cursor()
 
-# Create table
-cur.execute('''CREATE TABLE IF NOT EXISTS leaderboard
-                (start_date INTEGER, end_date INTEGER, goal TEXT, attempts INTEGER)''')
-
-con.commit()
 def mm_ss(duration):
     seconds = int(duration/1000)
     minutes = int(seconds/60)
@@ -19,16 +12,27 @@ def date_str(milliseconds):
     return str(date)
 
 class leaderboard_repository:
-    def add_record(start_time, end_time, goal, nb_attempts):
-        con = sqlite3.connect('leaderboard.db')
+    def __init__(self, database_name = 'leaderboard.db'):
+        self.database_name = database_name
+        con = sqlite3.connect(database_name)
+        cur = con.cursor()
+        cur.execute('''CREATE TABLE IF NOT EXISTS leaderboard
+                (start_date INTEGER, end_date INTEGER, goal TEXT, attempts INTEGER)''')
+        con.commit()
+        cur.close()
+        con.close()
+        pass
+
+    def add_record(self, start_time, end_time, goal, nb_attempts):
+        con = sqlite3.connect(self.database_name)
         cur = con.cursor()
         cur.execute("INSERT INTO leaderboard VALUES (?, ?, ?, ?)", (start_time, end_time, goal, nb_attempts))
         con.commit()
         cur.close()
         con.close()
 
-    def fetch_records():
-        con = sqlite3.connect('leaderboard.db')
+    def fetch_records(self):
+        con = sqlite3.connect(self.database_name)
         cur = con.cursor()
         cur.execute("select * from leaderboard ORDER BY attempts")
         result = []
