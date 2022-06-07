@@ -5,3 +5,4 @@ webdriver-manager
 coverage
 pysqlite3
 flask_session
+beautifulsoup4
