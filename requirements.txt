@@ -1,4 +1,6 @@
 flask
 pytest
 selenium
-web_driver
+webdriver-manager
+coverage
+sqlite3
