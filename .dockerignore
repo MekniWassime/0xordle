@@ -1,0 +1,15 @@
+Dockerfile
+.dockerignore
+.git*
+.coverage
+__pycache__
+tests
+unittest
+README.md
+/flask_session
+*/*/__pycache__
+*/__pycache__
+.pytest_cache
+leaderboard.db
+test_database.db
+tests/e2e/screenshots
