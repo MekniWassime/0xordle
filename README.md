@@ -19,4 +19,10 @@ from the home page you can click dailyhex to enter the game or check the leaderb
     - test_winning_adding_record_to_db: this plays the winning string that matches the goal and checks if it has been added to the leaderboard
 - e2e tests
   - this test uses selenium and does a full run of the app, it clicks the daily hex button to enter the game, plays a few attempts, plays the winning string, goes back to home and from there it checks the leaderboard. the test takes a screenshot at each state and also performs asserts
-
+# CI/CD pipleline
+in this section we create the required files in order to implement a full CI/CD pipeline that deploys to AWS's ECS
+- CI:
+  - in order to perform tests the pipeline loads in the code from github, sets up python environement, installs all dependencies within requirements.txt and runs the tests described above, and reports the resulting code coverage
+  - it also creates a docker image and uploads it to my personal docker hub account that will be later deployed on ECS
+- CD:
+  - 
