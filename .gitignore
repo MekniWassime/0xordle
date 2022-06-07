@@ -4,3 +4,5 @@
 __pycache__
 .pytest_cache
 leaderboard.db
+test_database.db
+tests/e2e/screenshots
