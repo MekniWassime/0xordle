@@ -25,4 +25,6 @@ in this section we create the required files in order to implement a full CI/CD 
   - in order to perform tests the pipeline loads in the code from github, sets up python environement, installs all dependencies within requirements.txt and runs the tests described above, and reports the resulting code coverage
   - it also creates a docker image and uploads it to my personal docker hub account that will be later deployed on ECS
 - CD:
-  - 
+  - we configured task definitions that use the docker container created earlier and also made the required configuration to create a cluster and a service that uses elastic load balancing. we also configured security groups to expose the app on port 5000
+![image](https://user-images.githubusercontent.com/60438665/172498661-7adc9cb9-57ce-447b-9cb0-19819565f31b.png)
+
