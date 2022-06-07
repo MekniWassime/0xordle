@@ -18,4 +18,5 @@ from the home page you can click dailyhex to enter the game or check the leaderb
     - test_dailyhex_changing_mid_game: this test plays a couple of rounds of the game, triggers a goal change, and checks if the round has been reset with the new goal string as intended
     - test_winning_adding_record_to_db: this plays the winning string that matches the goal and checks if it has been added to the leaderboard
 - e2e tests
-  - 
+  - this test uses selenium and does a full run of the app, it clicks the daily hex button to enter the game, plays a few attempts, plays the winning string, goes back to home and from there it checks the leaderboard. the test takes a screenshot at each state and also performs asserts
+
