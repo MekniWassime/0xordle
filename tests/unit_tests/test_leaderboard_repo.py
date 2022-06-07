@@ -12,13 +12,17 @@ class TestLeaderboardRepo(TestCase):
             (1654431010000, 1654431019000, 'a8c2d6', 2),
             (1654431050000, 1654431050000, 'a8c2d6', 5)
         ]
-        expected_value = [
+        expected_value1 = [
+            {'start_time': '2022-06-05 13:10:10', 'time_taken': '0:9', 'goal': 'a8c2d6', 'attempts': 2},
+            {'start_time': '2022-06-05 13:10:50', 'time_taken': '0:0', 'goal': 'a8c2d6', 'attempts': 5}
+        ]
+        expected_value2 = [
             {'start_time': '2022-06-05 13:10:10', 'time_taken': '0:9', 'goal': 'a8c2d6', 'attempts': 2},
             {'start_time': '2022-06-05 13:10:50', 'time_taken': '0:0', 'goal': 'a8c2d6', 'attempts': 5}
         ]
         result = leaderboard_repository().fetch_records()
         assert(result)
-        assert(result == expected_value)
+        assert(result == expected_value1 or result == expected_value2)
 
 # if __name__ == '__main__':
 #     main()
