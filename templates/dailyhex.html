@@ -25,7 +25,7 @@
         <form action="dailyhex" method="post">
             <label for="user_input">#</label>
             <input type="text" name="user_input" id="user_input" pattern="^[0-9A-Fa-f]{6}$" title="Invalid hex code">
-            <input type="submit" value="Try It!" class="btn-primary">
+            <input type="submit" value="Try It!" id="user_submit" class="btn-primary">
         </form>
     {% else %}
         <h1 id="win_message">You figured it out congratz!</h1>

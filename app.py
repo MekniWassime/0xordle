@@ -66,6 +66,9 @@ def create_app(name):
             return new_state
     return app
 
-if __name__ == "__main__":
+def main():
     app = create_app(__name__)
     app.run(debug=True)
+
+if __name__ == "__main__":
+    main()
