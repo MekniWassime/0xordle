@@ -31,10 +31,12 @@ class TestGameState(TestCase):
 
     def test_generate_board(self):
         state = game_state("ABBBCD")
+        state.attempts = []
         state.play("BBBCDF") #B wrong position, #B matches, #B matches, #C wrong position, #D wrong position, #F wrong
         state.play("BBBB12") #B wrong, #B matches, #B matches, #B matches, #1 wrong, #2 wrong
         board = state.get_board()
         first_guess = board[0]
+        #print(first_guess)
         assert( 
             first_guess[0]["status"] == 'exists' and
             first_guess[1]["status"] == 'match' and
@@ -54,5 +56,5 @@ class TestGameState(TestCase):
             second_guess[5]["status"] == 'wrong'
         )
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

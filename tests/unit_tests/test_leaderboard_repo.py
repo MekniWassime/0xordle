@@ -16,9 +16,9 @@ class TestLeaderboardRepo(TestCase):
             {'start_time': '2022-06-05 13:10:10', 'time_taken': '0:9', 'goal': 'a8c2d6', 'attempts': 2},
             {'start_time': '2022-06-05 13:10:50', 'time_taken': '0:0', 'goal': 'a8c2d6', 'attempts': 5}
         ]
-        result = leaderboard_repository.fetch_records()
+        result = leaderboard_repository().fetch_records()
         assert(result)
         assert(result == expected_value)
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

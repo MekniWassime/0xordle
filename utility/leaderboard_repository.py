@@ -1,20 +1,22 @@
 import sqlite3
 from datetime import datetime
+import os
 
 def mm_ss(duration):
     seconds = int(duration/1000)
     minutes = int(seconds/60)
     seconds -= minutes*60
     return f"{minutes}:{seconds}"
+
 def date_str(milliseconds):
     seconds = milliseconds/1000
     date = datetime.fromtimestamp(seconds)
     return str(date)
 
 class leaderboard_repository:
-    def __init__(self, database_name = 'leaderboard.db'):
-        self.database_name = database_name
-        con = sqlite3.connect(database_name)
+    def __init__(self):
+        self.database_name = os.environ.get('DATABASE_FILENAME', 'leaderboard.db')
+        con = sqlite3.connect(self.database_name)
         cur = con.cursor()
         cur.execute('''CREATE TABLE IF NOT EXISTS leaderboard
                 (start_date INTEGER, end_date INTEGER, goal TEXT, attempts INTEGER)''')

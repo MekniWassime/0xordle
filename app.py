@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask_session import Session
-from models.game_state import game_state
+from models.game_state import game_state as GameState
 from utility.daily_hex_generator import get_hex_of_the_day
 from utility.leaderboard_repository import leaderboard_repository
 from flask import Flask, request, render_template , url_for, session, redirect
@@ -13,6 +13,8 @@ def create_app(name):
     app.secret_key = 'BAD_cxvxcvSECRET_KEY'
     app.config['SESSION_TYPE'] = 'filesystem'
     sess.init_app(app)
+
+    leaderboard_repo = leaderboard_repository()
 
     @app.route('/')
     def home():
@@ -33,7 +35,7 @@ def create_app(name):
         try:
             state.play(user_input)
             if(state.did_win):
-                leaderboard_repository.add_record(state.start_time, state.end_time, state.goal, len(state.attempts))
+                leaderboard_repo.add_record(state.start_time, state.end_time, state.goal, len(state.attempts))
             state.write_state_to_session(session)
             return redirect(url_for("dailyhex_get"))
         except:
@@ -41,7 +43,7 @@ def create_app(name):
 
     @app.route('/leaderboard')
     def leaderboard():
-        records = leaderboard_repository.fetch_records()
+        records = leaderboard_repo.fetch_records()
         return render_template('leaderboard.html', records = records)
 
     @app.route('/resetboard')
@@ -56,10 +58,10 @@ def create_app(name):
     def init_state():
         current_goal = get_hex_of_the_day().lower()
         if(('goal' in session) and (session['goal'] == current_goal)):
-            return game_state.read_state_from_session(session)
+            return GameState("ABCDEF").read_state_from_session(session)
         else:
             start_time = datetime.now().timestamp() * 1000
-            new_state = game_state(current_goal, start_time=start_time)
+            new_state = GameState(current_goal, start_time=start_time)
             new_state.write_state_to_session(session)
             return new_state
     return app

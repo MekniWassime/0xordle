@@ -15,5 +15,5 @@ class TestLeaderboardRepo(TestCase):
             hex_string = get_hex_of_the_day()
             validate_regex.search(hex_string) != None #check if the returned string is valid
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

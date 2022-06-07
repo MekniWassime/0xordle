@@ -1,6 +1,8 @@
 import re
 from collections import Counter
 from datetime import datetime
+import traceback
+
 validate_regex = re.compile("^[0-9A-Fa-f]{6}$")
 class game_state:
 
@@ -23,8 +25,7 @@ class game_state:
         session['start_time'] = self.start_time
         session['end_time'] = self.end_time
     
-    @staticmethod
-    def read_state_from_session(session):
+    def read_state_from_session(self ,session):
         return game_state(goal=session['goal'] ,attempts=session['attempts'], max_attempts=session['max_attempts'], did_win=session['did_win'], start_time=session['start_time'], end_time=session['end_time'])
     
     def attempts_remaining(self):
