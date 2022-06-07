@@ -27,4 +27,6 @@ in this section we create the required files in order to implement a full CI/CD 
 - CD:
   - we configured task definitions that use the docker container created earlier and also made the required configuration to create a cluster and a service that uses elastic load balancing. we also configured security groups to expose the app on port 5000
 ![image](https://user-images.githubusercontent.com/60438665/172498661-7adc9cb9-57ce-447b-9cb0-19819565f31b.png)
+![image](https://user-images.githubusercontent.com/60438665/172498764-f3a149fe-60d6-4031-9bb6-0a40c3821bf3.png)
+![image](https://user-images.githubusercontent.com/60438665/172498810-6dc35811-8246-4a05-a276-90b133b248e8.png)
 
